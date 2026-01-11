@@ -1,0 +1,67 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Todo API
+paths:
+  /tasks:
+    options:
+      x-yc-apigateway-integration:
+        type: dummy
+        http_code: 200
+        http_headers:
+          Access-Control-Allow-Origin: "*"
+          Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS"
+          Access-Control-Allow-Headers: "*"
+          Access-Control-Max-Age: "3600"
+        content:
+          "application/json": ""
+    get:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: "${get_tasks_id}"
+        tag: "$latest"
+        service_account_id: "${functions_sa_id}"
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [all, active, completed]
+            default: all
+    post:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: "${create_task_id}"
+        tag: "$latest"
+        service_account_id: "${functions_sa_id}"
+  /tasks/{taskId}:
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+    options:
+      x-yc-apigateway-integration:
+        type: dummy
+        http_code: 200
+        http_headers:
+          Access-Control-Allow-Origin: "*"
+          Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS"
+          Access-Control-Allow-Headers: "*"
+          Access-Control-Max-Age: "3600"
+        content:
+          "application/json": ""
+    put:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: "${update_task_id}"
+        tag: "$latest"
+        service_account_id: "${functions_sa_id}"
+    delete:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: "${delete_task_id}"
+        tag: "$latest"
+        service_account_id: "${functions_sa_id}"

@@ -1,0 +1,18 @@
+bucket_name = "urfu-todo-p1umpe-static"
+bucket_website_url = "https://urfu-todo-p1umpe-static.website.yandexcloud.net"
+cloud_functions = {
+  "create_task" = "d4el5pc27q9ngt0ea9nu"
+  "delete_task" = "d4eluibev6nluvd4a0ke"
+  "get_tasks" = "d4ehk7486mmgdcep62ui"
+  "update_task" = "d4ei33u9jkm80q7j2ju9"
+}
+project_name = "urfu-todo-p1umpe"
+service_accounts = {
+  "functions" = "ajep8gah8f2be5lg0nnc"
+  "storage" = "ajeg0ij13c8uvokag916"
+  "ydb" = "ajeiof5rtn5u18v5iac7"
+}
+storage_access_key = <sensitive>
+storage_secret_key = <sensitive>
+vpc_id = "enp0tpu0u5vssri8k79q"
+ydb_endpoint = "ydb.serverless.yandexcloud.net:2135"
